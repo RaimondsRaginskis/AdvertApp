@@ -1,0 +1,22 @@
+[
+    {
+        "DisplayName": "AB Placis",
+        "FirstName": "Pēteris",
+        "LastName": "Ozoliņš",
+        "Email": "placis@test.lv",
+        "UserName": "placis@test.lv",
+        "Street": "Kalnciema iela 6",
+        "City": "Jelgava",
+        "PhoneNumber": "26123123"
+    },
+    {
+        "DisplayName": "Mārcis",
+        "FirstName": "Mārtiņš",
+        "LastName": "Vītoliņš",
+        "Email": "martins@test.lv",
+        "UserName": "martins@test.lv",
+        "Street": "Ģertrūdes iela 17",
+        "City": "Rīga",
+        "PhoneNumber": "26222222"
+    }
+]
