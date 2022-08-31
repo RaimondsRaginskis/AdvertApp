@@ -20,6 +20,7 @@ namespace API.Entities
         public string EngineSize { get; set; }
         public FuelType FuelType { get; set; }
         public string Description { get; set; }
+        public string VinCode { get; set; }
         public decimal Price { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
         public ICollection<Photo> Photos { get; set; }

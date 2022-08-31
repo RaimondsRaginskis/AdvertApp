@@ -1,0 +1,23 @@
+{
+    "lang": {
+        "title": "Translation demo",
+        "text": "This is a simple demonstration app for ngx-translate",
+        "placeAd": "Place Ad",
+        "login": "Login",
+        "register": "Register",
+        "name": "Username",
+        "email": "Email",
+        "password": "Password",
+        "alreadyAMember": "Already a member? Login here!",
+        "notYetAMember": "Not yet a member? Sign up here!",
+        "verifiedConfirmation": "Thank you for verification!",
+        "verifiedInfo": "Your account is now ready!",
+        "myAdds": " My Adds",
+        "myAccount": " My Account",
+        "logout": " Logout",
+        "hello": "Hello ",
+        "motto": "Meet Your Next Car!",
+        "info": "Buy, Sell, Join Today",
+        "browse": "Browse Adverts"
+    }
+}

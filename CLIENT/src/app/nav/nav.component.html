@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+    <div class="container">
+        <a class="navbar-brand" href="#">mobo.lv</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-success">{{'lang.placeAd' | translate}}</button>
+
+                    <!--<a *ngIf="(accountService.currentUser$ | async) === null" routerLink="/login" class="btn btn-outline-primary ms-2">{{'lang.login' | translate}}</a>
+                    <a *ngIf="(accountService.currentUser$ | async) === null" routerLink="/register" class="btn btn-outline-primary ms-2">{{'lang.register' | translate}}</a>-->
+                    
+                    <button *ngIf="(accountService.currentUser$ | async) === null" class="btn btn-outline-success ms-2" 
+                        data-bs-toggle="modal" data-bs-target="#loginModal">{{'lang.login' | translate}}</button>
+                    <button *ngIf="(accountService.currentUser$ | async) === null" class="btn btn-outline-primary ms-2" 
+                        data-bs-toggle="modal" data-bs-target="#registerModal">{{'lang.register' | translate}}</button>
+                </div>
+
+            <div class="d-flex justify-content-end">
+                <div class="nav-item dropdown" *ngIf="(accountService.currentUser$ | async) as user">
+                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                        {{'lang.hello' | translate}} {{user.displayName}} <fa-icon [icon]="faUser"></fa-icon>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                      <li><a class="dropdown-item" href="#">
+                        <fa-icon [icon]="faCar"></fa-icon>
+                        {{'lang.myAdds' | translate}}</a></li>
+                      <li><a class="dropdown-item" href="#">
+                        <fa-icon [icon]="faAcc"></fa-icon>
+                        {{'lang.myAccount' | translate}}</a></li>
+                      <li><a class="dropdown-item" href="#" (click)="logout()">
+                        <fa-icon [icon]="faLogout"></fa-icon>
+                        {{'lang.logout' | translate}}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<!--Login Modal-->
+<div class="modal fade" id="loginModal">
+    <app-login-modal></app-login-modal>
+</div>
+
+  <!--Register Modal-->
+<div class="modal fade" id="registerModal">
+    <app-register-modal></app-register-modal>
+</div>
+  
+

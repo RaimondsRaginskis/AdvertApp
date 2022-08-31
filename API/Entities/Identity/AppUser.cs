@@ -11,5 +11,9 @@ namespace API.Entities.Identity
         public string Street { get; set; }
         public string City { get; set; }
         public ICollection<AppUserRole> UserRoles { get; set; }
+        public string VerificationToken { get; set; }
+        public DateTime VerifiedAt { get; set; }
+        public string PasswordResetToken { get; set; }
+        public DateTime PasswordResetTokenExpireAt { get; set; }
     }
 }

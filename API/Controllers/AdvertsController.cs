@@ -10,10 +10,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    public class AdvertController : BaseApiController
+    public class AdvertsController : BaseApiController
     {
         private readonly DataContext _context;
-        public AdvertController(DataContext context)
+        public AdvertsController(DataContext context)
         {
             _context = context;
         }

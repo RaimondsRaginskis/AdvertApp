@@ -1,0 +1,23 @@
+{
+    "lang": {
+        "title": "Tūlkojuma demo",
+        "text": "Šis ir veids kā iztūlkot latviski ar ngx translate",
+        "placeAd": "Ievietot Sludinājumu",
+        "login": "Ienākt",
+        "register": "Reģistrēties",
+        "name": "Lietotājvārds",
+        "email": "Epasts",
+        "password": "Parole",
+        "alreadyAMember": "Jau esat reģistrējies? Ieiet šeit!",
+        "notYetAMember": "Piereģistrēties šeit!",
+        "verifiedConfirmation": "Paldies par apstiprinājumu!",
+        "verifiedInfo": "Jūsu konts ir gatavs!",
+        "myAdds": " Mani Sludinājumi",
+        "myAccount": " Mans Konts",
+        "logout": " Iziet",
+        "hello": "Sveiki ",
+        "motto": "Satiec Savu Nākošo Auto!",
+        "info": "Pērc, Pārdod, Ienāc Šodien",
+        "browse": "Visi Sludinājumi"
+    }
+}

@@ -59,6 +59,9 @@ namespace API.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("VinCode")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Year")
                         .HasColumnType("TEXT");
 
@@ -68,7 +71,7 @@ namespace API.Data.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Adverts");
+                    b.ToTable("Adverts", (string)null);
                 });
 
             modelBuilder.Entity("API.Entities.AdvertPricePackage", b =>
@@ -88,7 +91,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PricePackages");
+                    b.ToTable("PricePackages", (string)null);
                 });
 
             modelBuilder.Entity("API.Entities.Identity.AppRole", b =>
@@ -167,6 +170,12 @@ namespace API.Data.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("PasswordResetToken")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("PasswordResetTokenExpireAt")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("PhoneNr")
                         .HasColumnType("TEXT");
 
@@ -187,6 +196,12 @@ namespace API.Data.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("VerificationToken")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("VerifiedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -238,7 +253,7 @@ namespace API.Data.Migrations
 
                     b.HasIndex("AdvertId");
 
-                    b.ToTable("Photo");
+                    b.ToTable("Photo", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
