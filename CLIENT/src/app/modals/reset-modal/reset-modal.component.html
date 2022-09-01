@@ -6,22 +6,16 @@
               <p>mobo.lv</p>
               <button type="button" class="btn-close justify-content-end" data-bs-dismiss="modal"></button>
           </div>
-            <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
-              <h4 class="text-center text-primary">{{'lang.login' | translate}}</h4>
+            <form #loginForm="ngForm" (ngSubmit)="forgotPassword()" autocomplete="off">
+              <h4 class="text-center text-primary">Forgot Password?</h4>
               <hr>
               <div class="form-group">
                   <input 
                     name="email"
-                    [(ngModel)]="model.email"
+                    [(ngModel)]="email"
                     class="form-control mb-2" 
                     type="email" 
                     placeholder="{{'lang.email' | translate}}">
-                <input 
-                    name="password"
-                    [(ngModel)]="model.password"
-                    class="form-control mb-2" 
-                    type="password" 
-                    placeholder="{{'lang.password' | translate}}">
               </div>
   
                 <div class="form-group text-center">
@@ -31,13 +25,7 @@
         </div>
         <hr>
         <div class="text-center pb-3">
-          <div class="row">
-            <a href="" data-bs-toggle="modal" data-bs-target="#registerModal">{{'lang.notYetAMember' | translate}}</a>
-          </div>
-
-          <div class="row">
-            <a href="" data-bs-toggle="modal" data-bs-target="#resetModal">Aizmirsi palori? Nu huj s ņim!</a>
-          </div>
+          <a href="" data-bs-toggle="modal" data-bs-target="#loginModal">{{'lang.alreadyAMember' | translate}}</a>
         </div>
   
   </div>

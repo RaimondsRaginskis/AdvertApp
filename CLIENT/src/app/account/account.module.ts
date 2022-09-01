@@ -5,12 +5,14 @@ import { RegisterComponent } from './register/register.component';
 import { VerifiedComponent } from './verified/verified.component';
 import { SharedModule } from '../_modules/shared.module';
 import { FormsModule } from '@angular/forms';
+import { ResetComponent } from './reset/reset.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    VerifiedComponent
+    VerifiedComponent,
+    ResetComponent
   ],
   imports: [
     CommonModule,

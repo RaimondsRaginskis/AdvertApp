@@ -15,7 +15,7 @@ export class VerifiedComponent implements OnInit {
 
   ngOnInit(): void {
       this.href = this.router.url.split('/').pop();
-      console.log(this.href);
+      //console.log(this.href);
       this.verifyUser();
   }
 

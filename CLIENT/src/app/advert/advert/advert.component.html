@@ -1,18 +1,26 @@
 <div class="container mt-5">
     <div class="row">
-        <div class="col-3 text-center">
-            <button class="btn btn-primary" style="width: 100%;">Filter</button>
+        <div class="col-md-3 text-center mb-5 bg-white sticky-top" style="top: 56px;">
+            <button class="btn btn-primary mt-auto mb-3" style="width: 100%;">Filter</button>
         </div>
-        <div class="col-9">
+        <div class="col-md-9">
             <div *ngFor="let advert of adverts" class="card mb-3" style="width: 100%;">
-                <div class="card-body">
-                  <h5 class="card-title">{{advert.title}}</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">{{advert.make}} - {{advert.model}}</h6>
-                  <p class="card-text">{{advert.description}}</p>
-                  <p class="card-text">Eur {{advert.price}}</p>
-                  <a href="#" class="card-link">Card link</a>
+                <div class="card">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPcF4O3pOLrbW37OgKaLmZNh1pZbTN4sir6A&usqp=CAU" style="width: 100%;" class="card-img-left" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{advert.title}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{advert.make}} - {{advert.model}}</h6>
+                            <p class="card-text">{{advert.description}}</p>
+                            <p class="card-text">Eur {{advert.price}}</p>
+                            <a href="#" class="card-link">Card link</a>
+                        </div>
+                      </div>
+                    </div>
                 </div>
-              </div>
         </div>
     </div>
 </div>

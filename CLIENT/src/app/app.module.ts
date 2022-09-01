@@ -14,6 +14,7 @@ import { RegisterModalComponent } from './modals/register-modal/register-modal.c
 import { SharedModule } from './_modules/shared.module';
 import { AdvertModule } from './advert/advert.module';
 import { AccountModule } from './account/account.module';
+import { ResetModalComponent } from './modals/reset-modal/reset-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AccountModule } from './account/account.module';
     LanguagePickerComponent,
     HomeComponent,
     LoginModalComponent,
-    RegisterModalComponent
+    RegisterModalComponent,
+    ResetModalComponent
   ],
   imports: [
     BrowserModule,

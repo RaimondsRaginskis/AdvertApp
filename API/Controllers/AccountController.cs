@@ -76,7 +76,7 @@ namespace API.Controllers
 
             //if (user.VerifiedAt.ToString() == new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).ToString()) return BadRequest("User Not Verified");
 
-            if (!user.EmailConfirmed) return BadRequest("User Not Verified!");
+            if (!user.EmailConfirmed) return BadRequest("User not verified!");
 
             return new UserDto
             {
@@ -100,18 +100,18 @@ namespace API.Controllers
                 DisplayName = registerDto.DisplayName,
                 Email = registerDto.Email,
                 UserName = registerDto.Email,
-                VerificationToken = CreateVerificationToken()
+                VerificationToken = CreateToken()
             };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
-            if (!result.Succeeded) return BadRequest();
+            if (!result.Succeeded) return BadRequest("Failed to register user!");
 
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(_config.GetSection("EmailUsername").Value));
             email.To.Add(MailboxAddress.Parse(user.Email));
             email.Subject = "Thanks for joining MOBO!";
-            email.Body = new TextPart(TextFormat.Html) { Text = "<a href='https://localhost:4200/verify/" + user.VerificationToken + "'>Click to Verify</a>" };
+            email.Body = new TextPart(TextFormat.Html) { Text = "<h1>Paldies par reģistrāciju MOBO.LV</h1>" + "</br>" + "<a href='https://localhost:4200/verify/" + user.VerificationToken + "'>Apstiprināt Epasta adresi</a>" };
 
             var smtp = new SmtpClient();
             smtp.Connect(_config.GetSection("EmailHost").Value, 587, SecureSocketOptions.StartTls);
@@ -123,22 +123,72 @@ namespace API.Controllers
         }
 
         [HttpPost("verify")]
-        public async Task<ActionResult<UserDto>> VerifyUser(string token)
+        public async Task<ActionResult> VerifyUser(string token)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.VerificationToken == token);
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.VerificationToken == token);
 
-            if (user == null) return BadRequest("Invalid Token!");
+            if (user == null) return BadRequest("Invalid token!");
 
-            //user.VerifiedAt = DateTime.Now;
             user.EmailConfirmed = true;
 
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
+
+            await _userManager.UpdateAsync(user);
 
             return Ok("User verified!");
         }
 
-        //Generates token for verification
-        private string CreateVerificationToken()
+        [HttpPost("forgotpassword")]
+        public async Task<ActionResult> ForgotPassword(string userEmail)
+        {
+            var user = await _userManager.FindByEmailAsync(userEmail);
+
+            if (user == null) return BadRequest("User not found!");
+
+            user.PasswordResetToken = CreateToken();
+
+            user.PasswordResetTokenExpireAt = DateTime.Now.AddMinutes(15);
+
+            await _userManager.UpdateAsync(user);
+
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse(_config.GetSection("EmailUsername").Value));
+            email.To.Add(MailboxAddress.Parse(user.Email));
+            email.Subject = "MOBO Password Recovery!";
+            email.Body = new TextPart(TextFormat.Html) { Text = "<h1>Paroles maiņas pieprasijums.</h1>" + "</br>" + "<a href='https://localhost:4200/reset/" + user.PasswordResetToken + "'>Mainīt paroli!</a>" };
+
+            var smtp = new SmtpClient();
+            smtp.Connect(_config.GetSection("EmailHost").Value, 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate(_config.GetSection("EmailUsername").Value, _config.GetSection("EmailPassword").Value);
+            smtp.Send(email);
+            smtp.Disconnect(true);
+
+            return Ok("You may now reset your password");
+        }
+
+        [HttpPost("resetpassword")]
+        public async Task<ActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.PasswordResetToken == resetPasswordDto.ResetToken);
+
+            if (user == null || (user.PasswordResetTokenExpireAt < DateTime.Now
+                    && user.PasswordResetTokenExpireAt.ToString() != new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).ToString()))
+            {
+                return BadRequest("Invalid request!");
+            }
+
+            var newPassword = resetPasswordDto.Password;
+
+            await _userManager.RemovePasswordAsync(user);//Remove current password
+
+            await _userManager.AddPasswordAsync(user, newPassword);//Set new password
+            
+            return Ok("Password reset successfully!");
+        }
+
+        //Generates token for verification and password reset
+        private string CreateToken()
         {
             string token = Convert.ToHexString(RandomNumberGenerator.GetBytes(5));
 

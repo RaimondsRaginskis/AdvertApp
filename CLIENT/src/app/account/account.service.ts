@@ -38,6 +38,14 @@ export class AccountService {
     )
   }
 
+  forgotPassword(email: string) {
+    return this.http.post(this.baseUrl + 'account/forgotpassword?userEmail=' + email, {});
+  }
+
+  resetPassword(model: any) {
+    return this.http.post(this.baseUrl + 'account/resetpassword', model);
+  }
+
   setCurrentUser(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
