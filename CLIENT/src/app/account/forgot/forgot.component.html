@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">mobo.lv</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form #forgotForm="ngForm" (ngSubmit)="forgotPassword()" autocomplete="off">
+        <h4 class="text-center text-primary">{{'lang.forgot' | translate}}</h4>
+        <hr>
+        <p>{{'lang.forgotInfo' | translate}}</p>
+        <div class="form-group">
+            <input 
+              name="email"
+              [(ngModel)]="email"
+              class="form-control mb-2" 
+              type="email" 
+              placeholder="{{'lang.email' | translate}}">
+        </div>
+
+          <div class="form-group text-center">
+            <button class="btn btn-outline-primary col-6 mt-4" type="submit" (click)="closeModal()">{{'lang.submit' | translate}}</button>
+          </div>
+      </form>
+  </div>

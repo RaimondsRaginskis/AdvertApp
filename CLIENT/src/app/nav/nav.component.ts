@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account/account.service';
 import { faCar, faGear, faRightFromBracket, faUserLarge } from '@fortawesome/free-solid-svg-icons';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
+import { LoginComponent } from '../account/login/login.component';
+import { RegisterComponent } from '../account/register/register.component';
 
 
 @Component({
@@ -15,8 +19,9 @@ export class NavComponent implements OnInit {
   faCar = faCar;
   faAcc = faGear;
   faLogout = faRightFromBracket;
+  modalRef: BsModalRef;
 
-  constructor(public accountService: AccountService) {
+  constructor(public accountService: AccountService, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
@@ -24,6 +29,14 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
+  }
+
+  openLoginModal() {
+    this.modalRef = this.modalService.show(LoginComponent);
+  }
+
+  openRegisterModal() {
+    this.modalRef = this.modalService.show(RegisterComponent)
   }
 
 }

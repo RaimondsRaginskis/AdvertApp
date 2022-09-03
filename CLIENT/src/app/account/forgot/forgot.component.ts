@@ -5,24 +5,26 @@ import { AccountService } from '../account.service';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-forgot',
+  templateUrl: './forgot.component.html',
+  styleUrls: ['./forgot.component.css']
 })
-export class RegisterComponent implements OnInit {
-  model: any = {}
+export class ForgotComponent implements OnInit {
+  email: string;
 
   constructor(public accountService: AccountService, private modalService: BsModalService, public modalRef: BsModalRef) { }
 
   ngOnInit(): void {
   }
 
-  register() {
-    this.accountService.register(this.model).subscribe({
-      next: response => console.log(response),
-      error: error => console.log(error),
-      complete: () => this.modalService.hide()
-    })
+  forgotPassword() {
+    this.accountService.forgotPassword(this.email)
+    //No logs for security reasons
+    //.subscribe({
+      //next: response => console.log(response),
+      //error: error => console.log(error),
+      //complete: () => this.modalService.hide()
+    //})
   }
 
   closeModal() {
@@ -32,6 +34,5 @@ export class RegisterComponent implements OnInit {
   openLoginModal() {
     this.modalService.show(LoginComponent)
   }
-
 
 }

@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { AdvertComponent } from './advert/advert.component';
 import { AdvertDetailsComponent } from './advert-details/advert-details.component';
 
-
-
 @NgModule({
   declarations: [
     AdvertComponent,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from '../account.service';
 
@@ -10,8 +11,15 @@ import { AccountService } from '../account.service';
 export class ResetComponent implements OnInit {
   public resetToken: string = this.router.url.split('/').pop();
   model: any = {"resetToken": this.resetToken};
+  // resetForm = new FormGroup({
+  //   password: new FormControl('', [
+  //     Validators.required,
+  //     Validators.minLength(8)
+  //   ]),
+  //   confirmPassword: new FormControl('', [Validators.required])
+  // })
 
-  constructor(private router: Router, public accountService: AccountService) { }
+  constructor(private router: Router, public accountService: AccountService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
       console.log(this.resetToken);
@@ -22,6 +30,10 @@ export class ResetComponent implements OnInit {
       next: response => console.log(response),
       error: error => console.log(error)
     })
+  }
+
+  onSubmit() {
+    this.router.navigateByUrl('/');
   }
 
 }

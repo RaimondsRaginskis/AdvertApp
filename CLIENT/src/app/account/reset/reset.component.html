@@ -1,16 +1,10 @@
 <div class="container">
     <div class="d-flex justify-content-center">
 
-      <form #resetForm="ngForm" (ngSubmit)="resetPassword()" autocomplete="off">
+      <form #resetForm="ngForm" (ngSubmit)="resetPassword(); onSubmit()" autocomplete="off">
         <h4 class="text-center text-primary">Reset Password</h4>
         <hr>
         <div class="form-group">
-            <!--<input
-              name="resetToken"
-              [(ngModel)]="model.resetToken"
-              class="form-control mb-2" 
-              type="text"
-              value="123">-->
             <input 
               name="password"
               [(ngModel)]="model.password"

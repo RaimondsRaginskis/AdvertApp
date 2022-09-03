@@ -9,22 +9,16 @@ import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
 import { LanguagePickerComponent } from './language-picker/language-picker.component';
 import { HomeComponent } from './home/home.component';
-import { LoginModalComponent } from './modals/login-modal/login-modal.component';
-import { RegisterModalComponent } from './modals/register-modal/register-modal.component';
 import { SharedModule } from './_modules/shared.module';
 import { AdvertModule } from './advert/advert.module';
 import { AccountModule } from './account/account.module';
-import { ResetModalComponent } from './modals/reset-modal/reset-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     LanguagePickerComponent,
-    HomeComponent,
-    LoginModalComponent,
-    RegisterModalComponent,
-    ResetModalComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,

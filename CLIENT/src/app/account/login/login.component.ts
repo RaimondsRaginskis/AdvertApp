@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AccountService } from 'src/app/account/account.service';
+
+import { ForgotComponent } from '../forgot/forgot.component';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +13,7 @@ import { AccountService } from 'src/app/account/account.service';
 export class LoginComponent implements OnInit {
   model: any = {}
 
-  constructor(public accountService: AccountService) { }
+  constructor(private accountService: AccountService, private modalService: BsModalService, public modalRef: BsModalRef) { }
 
   ngOnInit(): void {
   }
@@ -17,8 +21,22 @@ export class LoginComponent implements OnInit {
   login() {
     this.accountService.login(this.model).subscribe({
       next: response => console.log(response),
-      error: error => console.log(error)
+      error: error => console.log(error),
+      complete: () => this.modalService.hide()
     });
   }
 
+  closeModal() {
+    this.modalService.hide()
+  }
+
+  openRegisterModal() {
+    this.modalService.show(RegisterComponent)
+  }
+
+  openForgotModal() {
+    this.modalService.show(ForgotComponent)
+  }
+ 
 }
+

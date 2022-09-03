@@ -8,19 +8,16 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <div class="d-flex justify-content-end">
                     <button class="btn btn-success">{{'lang.placeAd' | translate}}</button>
-
-                    <!--<a *ngIf="(accountService.currentUser$ | async) === null" routerLink="/login" class="btn btn-outline-primary ms-2">{{'lang.login' | translate}}</a>
-                    <a *ngIf="(accountService.currentUser$ | async) === null" routerLink="/register" class="btn btn-outline-primary ms-2">{{'lang.register' | translate}}</a>-->
                     
-                    <button *ngIf="(accountService.currentUser$ | async) === null" class="btn btn-outline-success ms-2" 
-                        data-bs-toggle="modal" data-bs-target="#loginModal">{{'lang.login' | translate}}</button>
-                    <button *ngIf="(accountService.currentUser$ | async) === null" class="btn btn-outline-primary ms-2" 
-                        data-bs-toggle="modal" data-bs-target="#registerModal">{{'lang.register' | translate}}</button>
+                    <button *ngIf="(accountService.currentUser$ | async) === null" class="btn btn-outline-success mx-2" 
+                        (click)="openLoginModal()" >{{'lang.login' | translate}}</button>
+                    <button *ngIf="(accountService.currentUser$ | async) === null" class="btn btn-outline-primary" 
+                        (click)="openRegisterModal()" >{{'lang.register' | translate}}</button>
                 </div>
 
             <div class="d-flex justify-content-end">
                 <div class="nav-item dropdown" *ngIf="(accountService.currentUser$ | async) as user">
-                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                    <button class="btn btn-outline-secondary ms-2" type="button" data-bs-toggle="dropdown">
                         {{'lang.hello' | translate}} {{user.displayName}} <fa-icon [icon]="faUser"></fa-icon>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
@@ -40,20 +37,5 @@
         </div>
     </div>
 </nav>
-
-<!--Login Modal-->
-<div class="modal fade" id="loginModal">
-    <app-login-modal></app-login-modal>
-</div>
-
-  <!--Register Modal-->
-<div class="modal fade" id="registerModal">
-    <app-register-modal></app-register-modal>
-</div>
-
-  <!--Reset Modal-->
-<div class="modal fade" id="resetModal">
-    <app-reset-modal></app-reset-modal>
-</div>
   
 

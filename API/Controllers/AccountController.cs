@@ -74,8 +74,6 @@ namespace API.Controllers
 
             if (!result.Succeeded) return Unauthorized();
 
-            //if (user.VerifiedAt.ToString() == new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).ToString()) return BadRequest("User Not Verified");
-
             if (!user.EmailConfirmed) return BadRequest("User not verified!");
 
             return new UserDto
@@ -119,7 +117,7 @@ namespace API.Controllers
             smtp.Send(email);
             smtp.Disconnect(true);
 
-            return Ok("Verification email sent!");
+            return Ok();
         }
 
         [HttpPost("verify")]
@@ -131,11 +129,11 @@ namespace API.Controllers
 
             user.EmailConfirmed = true;
 
-            //await _context.SaveChangesAsync();
+            user.VerificationToken = null;
 
             await _userManager.UpdateAsync(user);
 
-            return Ok("User verified!");
+            return Ok();
         }
 
         [HttpPost("forgotpassword")]
@@ -147,7 +145,7 @@ namespace API.Controllers
 
             user.PasswordResetToken = CreateToken();
 
-            user.PasswordResetTokenExpireAt = DateTime.Now.AddMinutes(15);
+            user.PasswordResetTokenExpireAt = DateTime.Now.AddDays(1);
 
             await _userManager.UpdateAsync(user);
 
@@ -163,7 +161,7 @@ namespace API.Controllers
             smtp.Send(email);
             smtp.Disconnect(true);
 
-            return Ok("You may now reset your password");
+            return Ok();
         }
 
         [HttpPost("resetpassword")]
@@ -190,7 +188,7 @@ namespace API.Controllers
         //Generates token for verification and password reset
         private string CreateToken()
         {
-            string token = Convert.ToHexString(RandomNumberGenerator.GetBytes(5));
+            string token = Convert.ToHexString(RandomNumberGenerator.GetBytes(20));
 
             return token;
         }
