@@ -12,7 +12,7 @@ namespace API.Dtos
         public string ResetToken { get; set; } = string.Empty;
 
         [Required]
-        [RegularExpression("(?=^.{6,10}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$",
+        [RegularExpression("(?=^.{6,50}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$",
                         ErrorMessage = "Password must have 1 uppercase, 1 lowercase, 1 number and be atleast 6 characters long!")]
         public string Password { get; set; } = string.Empty;
 

@@ -20,11 +20,11 @@ export class ForgotComponent implements OnInit {
   forgotPassword() {
     this.accountService.forgotPassword(this.email)
     //No logs for security reasons
-    //.subscribe({
-      //next: response => console.log(response),
-      //error: error => console.log(error),
-      //complete: () => this.modalService.hide()
-    //})
+    // .subscribe({
+    //   next: response => console.log(response),
+    //   error: error => console.log(error),
+    //   complete: () => this.modalService.hide()
+    // })
   }
 
   closeModal() {
